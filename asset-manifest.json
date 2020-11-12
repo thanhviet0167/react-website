@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/gi/static/css/main.575c05e8.chunk.css",
-    "main.js": "/gi/static/js/main.5b8fa5d0.chunk.js",
-    "main.js.map": "/gi/static/js/main.5b8fa5d0.chunk.js.map",
-    "runtime-main.js": "/gi/static/js/runtime-main.5b4665bb.js",
-    "runtime-main.js.map": "/gi/static/js/runtime-main.5b4665bb.js.map",
-    "static/css/2.1a02f21c.chunk.css": "/gi/static/css/2.1a02f21c.chunk.css",
-    "static/js/2.9bb079e8.chunk.js": "/gi/static/js/2.9bb079e8.chunk.js",
-    "static/js/2.9bb079e8.chunk.js.map": "/gi/static/js/2.9bb079e8.chunk.js.map",
-    "index.html": "/gi/index.html",
-    "static/css/2.1a02f21c.chunk.css.map": "/gi/static/css/2.1a02f21c.chunk.css.map",
-    "static/css/main.575c05e8.chunk.css.map": "/gi/static/css/main.575c05e8.chunk.css.map",
-    "static/js/2.9bb079e8.chunk.js.LICENSE.txt": "/gi/static/js/2.9bb079e8.chunk.js.LICENSE.txt",
-    "static/media/HeroSection.css": "/gi/static/media/back-ground.f4680510.jpg",
-    "static/media/App.css": "/gi/static/media/img-8.fabdf94d.jpg"
+    "main.css": "/thanhviet0167.github.io/react-website/static/css/main.85a92079.chunk.css",
+    "main.js": "/thanhviet0167.github.io/react-website/static/js/main.5b8fa5d0.chunk.js",
+    "main.js.map": "/thanhviet0167.github.io/react-website/static/js/main.5b8fa5d0.chunk.js.map",
+    "runtime-main.js": "/thanhviet0167.github.io/react-website/static/js/runtime-main.0dfc1438.js",
+    "runtime-main.js.map": "/thanhviet0167.github.io/react-website/static/js/runtime-main.0dfc1438.js.map",
+    "static/css/2.1a02f21c.chunk.css": "/thanhviet0167.github.io/react-website/static/css/2.1a02f21c.chunk.css",
+    "static/js/2.9bb079e8.chunk.js": "/thanhviet0167.github.io/react-website/static/js/2.9bb079e8.chunk.js",
+    "static/js/2.9bb079e8.chunk.js.map": "/thanhviet0167.github.io/react-website/static/js/2.9bb079e8.chunk.js.map",
+    "index.html": "/thanhviet0167.github.io/react-website/index.html",
+    "static/css/2.1a02f21c.chunk.css.map": "/thanhviet0167.github.io/react-website/static/css/2.1a02f21c.chunk.css.map",
+    "static/css/main.85a92079.chunk.css.map": "/thanhviet0167.github.io/react-website/static/css/main.85a92079.chunk.css.map",
+    "static/js/2.9bb079e8.chunk.js.LICENSE.txt": "/thanhviet0167.github.io/react-website/static/js/2.9bb079e8.chunk.js.LICENSE.txt",
+    "static/media/HeroSection.css": "/thanhviet0167.github.io/react-website/static/media/back-ground.f4680510.jpg",
+    "static/media/App.css": "/thanhviet0167.github.io/react-website/static/media/img-8.fabdf94d.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.5b4665bb.js",
+    "static/js/runtime-main.0dfc1438.js",
     "static/css/2.1a02f21c.chunk.css",
     "static/js/2.9bb079e8.chunk.js",
-    "static/css/main.575c05e8.chunk.css",
+    "static/css/main.85a92079.chunk.css",
     "static/js/main.5b8fa5d0.chunk.js"
   ]
 }
