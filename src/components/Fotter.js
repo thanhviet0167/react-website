@@ -25,9 +25,9 @@ function Footer() {
           </form>
         </div>
       </section>
-      <div class='footer-links'>
+      <div className='footer-links'>
         <div className='footer-link-wrapper'>
-          <div class='footer-link-items'>
+          <div className='footer-link-items'>
             <h2>About Us</h2>
             <Link to='/sign-up'>How it works</Link>
             <Link to='/'>Testimonials</Link>
@@ -35,7 +35,7 @@ function Footer() {
             <Link to='/'>Investors</Link>
             <Link to='/'>Terms of Service</Link>
           </div>
-          <div class='footer-link-items'>
+          <div className='footer-link-items'>
             <h2>Contact Us</h2>
             <Link to='/'>Contact</Link>
             <Link to='/'>Support</Link>
@@ -44,14 +44,14 @@ function Footer() {
           </div>
         </div>
         <div className='footer-link-wrapper'>
-          <div class='footer-link-items'>
+          <div className='footer-link-items'>
             <h2>Videos</h2>
             <Link to='/'>Submit Video</Link>
             <Link to='/'>Ambassadors</Link>
             <Link to='/'>Agency</Link>
             <Link to='/'>Influencer</Link>
           </div>
-          <div class='footer-link-items social'>
+          <div className='footer-link-items social'>
             <h2>Social Media</h2>
             <Link id='ins'>Instagram</Link>
             <Link id='fb'>Facebook</Link>
@@ -60,30 +60,30 @@ function Footer() {
           </div>
         </div>
       </div>
-      <section class='social-media'>
-        <div class='social-media-wrap'>
-          <div class='footer-logo'>
+      <section className='social-media'>
+        <div className='social-media-wrap'>
+          <div className='footer-logo'>
             <Link to='/' className='social-logo'>
             VEGANIMAL
-              <i class='fab fa-typo3' />
+              <i className='fab fa-typo3' />
             </Link>
           </div>
-          <small class='website-rights'>VEGANIMAL © 2020</small>
-          <div class='social-icons'>
-            <Link class='social-icon-link facebook' id='FB'  target='_blank' aria-label='Facebook'  >
-              <i class='fab fa-facebook-f' />
+          <small className='website-rights'>VEGANIMAL © 2020</small>
+          <div className='social-icons'>
+            <Link className='social-icon-link facebook' id='FB'  target='_blank' aria-label='Facebook'  >
+              <i className='fab fa-facebook-f' />
             </Link>
-            <Link class='social-icon-link instagram' id='INS' target='_blank' aria-label='Instagram'>
-              <i class='fab fa-instagram' />
+            <Link className='social-icon-link instagram' id='INS' target='_blank' aria-label='Instagram'>
+              <i className='fab fa-instagram' />
             </Link>
-            <Link class='social-icon-link youtube' id='YTB' target='_blank' aria-label='Youtube' >
-              <i class='fab fa-youtube' />
+            <Link className='social-icon-link youtube' id='YTB' target='_blank' aria-label='Youtube' >
+              <i className='fab fa-youtube' />
             </Link>
-            <Link class='social-icon-link twitter' id="TW" target='_blank' aria-label='Twitter'>
-              <i class='fab fa-twitter' />
+            <Link className='social-icon-link twitter' id="TW" target='_blank' aria-label='Twitter'>
+              <i className='fab fa-twitter' />
             </Link>
-            <Link class='social-icon-link linkedin' id='LK' target='_blank' aria-label='LinkedIn'>
-              <i class='fab fa-linkedin' />
+            <Link className='social-icon-link linkedin' id='LK' target='_blank' aria-label='LinkedIn'>
+              <i className='fab fa-linkedin' />
             </Link>
           </div>
         </div>
