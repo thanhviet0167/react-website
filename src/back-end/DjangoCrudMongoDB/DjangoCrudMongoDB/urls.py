@@ -27,5 +27,6 @@ urlpatterns = [
     path('delete_user/<str:id>', views.delete_user),
     path('read_user/<str:id>', views.read_user),
     path('read_user_all/', views.read_user_all),
+    path('check_exist_user/<str:username>', views.check_exist_user)
     
 ]

@@ -57,7 +57,20 @@ def read_user(request,id):
 
 def read_user_all(request):
     posts = Create_User.objects.all()
-    stringval = ""
+    stringval = []
     for post in posts:
-        stringval = "Username: " + post.user_details['username'] + " Password" + post.user_details['password']
+        stringval.append(post.username)
     return HttpResponse(stringval)
+
+
+def check_exist_user(request,username):
+    posts = Create_User.objects.all()
+
+    for post in posts:
+        if(post.username == username):
+            return HttpResponse('true')
+    return HttpResponse('false')
+    # if(post != NULL):
+    #     stringval = post.username
+
+    

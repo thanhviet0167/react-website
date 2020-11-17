@@ -16,25 +16,80 @@ class SignUp extends Component {
             password: ''
         }
     }
-
-    changeHandler = e =>  {
-        this.setState({[e.target.name]: e.target.value})
-    }
-
-    submitHandler = e => {
-        e.preventDefault()
-        console.log(this.state)
+    my_data = []
+    link_url = []
+    componentDidMount()
+    {
         axios({
-            method:'POST',
-            url: "http://localhost:8000/api/add_user/",
+            method:'GET',
+            url: this.link_url,
             data: this.state
         })
         .then(reponse => {
+            this.my_data = reponse
             console.log(reponse)
         })
         .catch(error => {
             console.log(error)
         })
+    
+    }
+    
+    changeHandler = e =>  {
+        this.setState({[e.target.name]: e.target.value})
+        
+    }
+    check_state = false
+    submitHandler = e => {
+        e.preventDefault()
+        console.log(this.state)
+        this.link_url = "http://127.0.0.1:8000/check_exist_user/" + this.state.username;
+
+        
+
+        axios({
+            method:'GET',
+            url: this.link_url,
+            data: this.state
+        })
+        .then(reponse => {
+            if(reponse['data'])
+            {
+                console.log("Account exist")
+            }
+            else
+            {
+                axios({
+                method:'POST',
+                url: "http://localhost:8000/api/add_user/",
+                data: this.state
+                })
+                .then(reponse => {
+                    console.log(reponse)
+                })
+                .catch(error => {
+                    console.log(error)
+                })   
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+
+
+       // console.log(this.my_data)
+        // axios({
+        //     method:'POST',
+        //     url: "http://localhost:8000/api/add_user/",
+        //     data: this.state
+        // })
+        // .then(reponse => {
+        //     console.log(reponse)
+        // })
+        // .catch(error => {
+        //     console.log(error)
+        // })
 
     }
 
