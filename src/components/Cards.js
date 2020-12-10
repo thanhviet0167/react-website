@@ -1,21 +1,33 @@
-import React from 'react'
+import React, {Component} from 'react'
 // import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import CardItem from './CardItem'
 import './Cards.css'
-import card_product from './data/data_products'
+import PropTypes from 'prop-types'
 
-function Cards() {
-   
-    const list_card = card_product.map((item, index) =>
-                    
-                    
+
+
+
+
+class Cards extends Component{
+   state = {
+        list_card: [],
+        temp: [],
+        my_data: this.props.list_product,
+        not_only: true
+   };
+    componentDidMount(){
+        console.log(this.props.list_product)
+        if(this.props.list_product.length === 1)
+        {
+            this.setState({not_only:false})
+        }
+        this.setState({list_card : this.state.my_data.map((item, index) =>
                         
-                <CardItem src={item.path} id={item.id} text= {item.description}
-                label={item.product_name} path='/products'/>
-                
-                 
-                
-        )
+            <CardItem product={item} handle_detail={this.props.handle_detail} handle_clear = {this.props.handle_clear}/>
+        )}) 
+    }
+    
+    render(){
     return (
         
         <div className='cards'>
@@ -26,7 +38,7 @@ function Cards() {
                     {/* {list_card} */}
             
                      <ul className='cards__items'>
-                        {list_card}
+                        {this.state.list_card}
                     </ul>
                     {/* <ul className='cards__items'>
                         <CardItem src='images/food_1.jpg' text='Explore the hidden waterfall deep inside the Amazon Jungle'
@@ -48,6 +60,13 @@ function Cards() {
         </div>
         
     )
+}
+}
+
+Cards.propTypes = {
+    list_product: PropTypes.array.isRequired,
+    handle_detail: PropTypes.func.isRequired,
+    handle_clear : PropTypes.func.isRequired,
 }
 
 export default Cards

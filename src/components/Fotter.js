@@ -92,45 +92,45 @@ function Footer() {
   );
 }
 
-window.onload = function(){
-  document.getElementById("fb").onclick = function()
-  {
-    window.location = "http://www.fb.com"; 
-  }
-  document.getElementById("ins").onclick = function()
-  {
-    window.location = "https://www.instagram.com/"; 
-  }
-  document.getElementById("ytb").onclick = function()
-  {
-    window.location = "https://www.youtube.com/"; 
-  }
-  document.getElementById("tw").onclick = function()
-  {
-    window.location = "https://twitter.com/"; 
-  }
+// window.onload = function(){
+//   document.getElementById("fb").onclick = function()
+//   {
+//     window.location = "http://www.fb.com"; 
+//   }
+//   document.getElementById("ins").onclick = function()
+//   {
+//     window.location = "https://www.instagram.com/"; 
+//   }
+//   document.getElementById("ytb").onclick = function()
+//   {
+//     window.location = "https://www.youtube.com/"; 
+//   }
+//   document.getElementById("tw").onclick = function()
+//   {
+//     window.location = "https://twitter.com/"; 
+//   }
 
-  document.getElementById("FB").onclick = function()
-  {
-    window.location = "http://www.fb.com"; 
-  }
-  document.getElementById("INS").onclick = function()
-  {
-    window.location = "https://www.instagram.com/"; 
-  }
-  document.getElementById("YTB").onclick = function()
-  {
-    window.location = "https://www.youtube.com/"; 
-  }
-  document.getElementById("TW").onclick = function()
-  {
-    window.location = "https://twitter.com/"; 
-  }
-  document.getElementById("LK").onclick = function()
-  {
-    window.location = "https://www.linkedin.com/"; 
-  }
-}
+//   document.getElementById("FB").onclick = function()
+//   {
+//     window.location = "http://www.fb.com"; 
+//   }
+//   document.getElementById("INS").onclick = function()
+//   {
+//     window.location = "https://www.instagram.com/"; 
+//   }
+//   document.getElementById("YTB").onclick = function()
+//   {
+//     window.location = "https://www.youtube.com/"; 
+//   }
+//   document.getElementById("TW").onclick = function()
+//   {
+//     window.location = "https://twitter.com/"; 
+//   }
+//   document.getElementById("LK").onclick = function()
+//   {
+//     window.location = "https://www.linkedin.com/"; 
+//   }
+// }
 
 
 

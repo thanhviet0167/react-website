@@ -147,6 +147,9 @@
       /* flex: 1 1 33.3333%; */
       width: 28%;
     }
+    .cards__items > .cards__item_only{
+      width: 100%;
+    }
   }
 
   @media only screen and (max-width: 960px)
