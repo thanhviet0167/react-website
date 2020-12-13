@@ -15,7 +15,7 @@ function HeroSection() {
                     GET STARTED
                 </Button>
                 <Button className='btns' buttonStyle='btn--primary' buttonSize='btn--large'>
-                    WATCH TRAILER <i className='far fa-play-circle' />
+                    SIGN IN <i className='fas fa-seedling' />
                 </Button>
             </div>
             

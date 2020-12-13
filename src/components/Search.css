@@ -15,10 +15,28 @@
     border-radius: 5px;
     margin-right: 10px;
     border-color: teal;
+    height: 80%;
+}
+
+.search:hover, .search:active, .search::after{
+    border-color: cadetblue;
+    font-size: 15;
+    font-weight: normal;
 }
 
 .button_search{
     border-color: teal;
     border-radius: 10%;
     margin-right: 5px;
+    height: 80%;
+    width: 5%;
+}
+.search_:hover{
+    background-color:black;
+    color: wheat;
+}
+
+.clear_:hover{
+    background-color: turquoise;
+    color: whitesmoke;
 }

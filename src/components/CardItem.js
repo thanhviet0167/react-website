@@ -25,10 +25,10 @@ class CardItem extends Component {
                     </figure>
                     <div className='cards__item__info'>
                         <h5 className='cards__item__text'>{this.props.product.description}</h5>
-                        <h5 className='cards__item__text'>{this.props.product.price}{this.props.product.currency}
-                        -Number:{this.props.product.count}</h5>
+                        <h5 className='cards__item__text'>Price: {this.props.product.price}{this.props.product.currency}</h5>
+                        <h5 className='cards__item__text'>Number:{this.props.product.count}</h5>
                         <button to={'/product-detail?'+this.state.product_detail.product_name} 
-                        onClick={this.props.handle_clear}>See detail</button>
+                        onClick={this.props.handle_clear} className="button-details">See detail</button>
                     </div>
                 </Link>
             </li>   

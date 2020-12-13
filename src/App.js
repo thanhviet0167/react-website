@@ -341,7 +341,6 @@ class App extends Component {
         handle_clear = {this.handle_clear} handle_clear_sort={this.state.handle_clear_sort} cart = {this.state.cart}
         total= {this.state.total} amount = {this.state.amount}/>
         <Search handle_search = {this.handle_search} handle_clear_type={this.handle_clear_type}/>     
-        {this.state.amount}  
           <Switch>
             <Route path="/" exact component={() => <Home list_product={this.state.list_product} search = {this.state.search}
             handle_detail={this.handle_detail} handle_clear = {this.handle_clear}/>}/>

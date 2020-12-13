@@ -58,6 +58,10 @@
     cursor: pointer;
     padding: 10px 25px;
     margin-top: 15px;
+}
 
+.box .cart:hover{
+    background-color: turquoise;
+    color: black;
 }
 

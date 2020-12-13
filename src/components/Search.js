@@ -25,8 +25,8 @@ class Search extends Component {
         
             <form className='nav-search' onSubmit={e => this.props.handle_search(e, this.state)}>
                 <input className='search' name='search' value={this.state.search} onChange={this.handle_change} placeholder='  Search...' type='text'></input>
-                <button type='submit' className='button_search'onClick={this.props.handle_clear_type}>Search</button>
-                <button type='button' className='button_search' onClick={this.handle_clear_search}>Clear</button>
+                <button type='submit' className='button_search search_'onClick={this.props.handle_clear_type}>Search</button>
+                <button type='button' className='button_search clear_' onClick={this.handle_clear_search}>Clear</button>
             </form>
         )
     }

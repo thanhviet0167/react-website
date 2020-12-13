@@ -75,17 +75,18 @@ class LIST_CART extends Component{
                                         <div>{item.product_name}</div>
                                         <span className="badge badge-primary badge-pill">{item.number_cart}</span>
                                         <span className="badge badge-primary badge-pill">{item.number_cart*item.price}$</span>
-                                        <button onClick = {()=> this.handle_add(item.index)}>Add</button>
-                                        <button onClick = {()=> this.handle_remove(item.index)}>Remove</button>
+                                        <button onClick  = {()=> this.handle_add(item.index)} className='add'>+</button>
+                                        <button onClick = {()=> this.handle_remove(item.index)} className= 'remove'>-</button>
                                     </li>
                                 )
                                 
                             })}
                             <li className="list-group-item d-flex justify-content-between align-items-center">
-                                <button onClick = {()=> this.handle_buy_cart(this.props.username, this.list_cart)}>Buy cart</button>
+                                <button onClick = {()=> this.handle_buy_cart(this.props.username, this.list_cart)} className = 'buy-cart'>
+                                Buy cart</button>
                             </li>
                             <li className="list-group-item d-flex justify-content-between align-items-center">
-                                <button onClick={()=> this.handle_clear_cart()}>Clear cart</button>
+                                <button onClick={()=> this.handle_clear_cart()} className='clear-cart'>Clear cart</button>
                             </li>
                             
                         </ul>
@@ -111,7 +112,7 @@ class LIST_CART extends Component{
                                 <div>My Card is empty</div>
                             </li>
                             <li className="list-group-item d-flex justify-content-between align-items-center">
-                                <button className="Home"><Link to='/'>Go to Home</Link> </button>
+                                <button className="Home"><Link to='/'className='go-to'>Go to Home</Link> </button>
                             </li>
                             
                         </ul>
