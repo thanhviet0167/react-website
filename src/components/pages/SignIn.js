@@ -26,7 +26,29 @@ class SignIn extends Component{
             return newState
         });
     }
-    
+    handle_check_username = () => {
+        if(this.state.username === '')
+        {
+          document.getElementById('error_username').innerHTML = "User name not empty"
+          document.getElementById('error_username').style.color = 'red'
+          document.getElementById('error_username').style.marginLeft = '5%'
+        }
+        else{
+          document.getElementById('error_username').innerHTML = ""
+        }
+        
+      }
+    handle_check_pw = () => {
+        if(this.state.password === '')
+        {
+          document.getElementById('error_password').innerHTML = "Password not empty"
+          document.getElementById('error_password').style.color = 'red'
+          document.getElementById('error_password').style.marginLeft = '5%'
+        }
+        else{
+          document.getElementById('error_password').innerHTML = ""
+        }
+      }
     render(){
         if(!this.props.logged_in){
         if(!this.props.search){
@@ -38,12 +60,15 @@ class SignIn extends Component{
                                   <hr/>
                                   <div className="form-group">
                                       <input type="text" className="form-control" name="username" value={this.state.username} 
-                                      onChange={this.handle_change} placeholder="Username" />
+                                      onChange={this.handle_change} onBlur={this.handle_check_username} placeholder="Username" />
+                                      <p id='error_username'></p>
+
                                   </div>
                                   <br/>
                                   <div class="form-group">
                                       <input type="password" className="form-control" name="password" value={this.state.password}
-                                      onChange={this.handle_change} placeholder="Password" />
+                                      onChange={this.handle_change} onBlur={this.handle_check_pw} placeholder="Password" />
+                                      <p id = 'error_password'></p>
                                       {/* <p id="text_box" style="color: red;">{{default}}</p> */}
                                   </div>
                                   <br/>

@@ -38,6 +38,12 @@ class App extends Component {
       product_detail:[],
       total: 0,
       amount: 0,
+      error_signup: {
+        username: '',
+        password: '',
+        email: '',
+        re_password: ''
+      }
     };
       this.product_details = []
     // this.product_cart = {
@@ -200,17 +206,30 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        if(json.username[0] !== "A user with that username already exists.")
+        console.log(json)
+        if(json.token)
         {
-          localStorage.setItem('token', json.token);
-          this.setState({
-          logged_in: true,
-          displayed_form: '',
-          username: json.username
-        });
+          if(json.username[0] !== "A user with that username already exists.")
+          {
+            localStorage.setItem('token', json.token);
+            this.setState({
+            logged_in: true,
+            displayed_form: '',
+            username: json.username
+          });
+          }
+          else{
+            alert("A user with that username already exists.")
+          }
         }
         else{
-          alert("A user with that username already exists.")
+          if(json.username[0] !== "A user with that username already exists.")
+          {
+            alert("Form not correct")
+          }
+          else{
+            alert("A user with that username already exists.")
+          }
         }
         
       });

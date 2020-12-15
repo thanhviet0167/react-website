@@ -11,9 +11,9 @@ class SignUp extends Component{
     state = {
         username: '',
         password: '',
-        email: ''
+        email: '',
+        re_password:''
       };
-    
       handle_change = e => {
         const name = e.target.name;
         const value = e.target.value;
@@ -23,12 +23,69 @@ class SignUp extends Component{
           return newState;
         });
       };
+      componentDidMount(){
+      }
+      handle_check_username = () => {
+        if(this.state.username === '')
+        {
+          document.getElementById('error_username').innerHTML = "User name not empty"
+          document.getElementById('error_username').style.color = 'red'
+          document.getElementById('error_username').style.marginLeft = '5%'
+        }
+        else{
+          document.getElementById('error_username').innerHTML = ""
+        }
+        
+      }
+      handle_check_email = () => {
+        if(this.state.email === '')
+        {
+          document.getElementById('error_email').innerHTML = "Email not empty"
+          document.getElementById('error_email').style.color = 'red'
+          document.getElementById('error_email').style.marginLeft = '5%'
+        }
+        else{
+          document.getElementById('error_email').innerHTML = ""
+        }
+      }
+
+      handle_check_pw = () => {
+        if(this.state.password === '')
+        {
+          document.getElementById('error_password').innerHTML = "Password not empty"
+          document.getElementById('error_password').style.color = 'red'
+          document.getElementById('error_password').style.marginLeft = '5%'
+        }
+        else{
+          document.getElementById('error_password').innerHTML = ""
+        }
+      }
+      handle_check_re_pw = () => {
+        if(this.state.re_password === '')
+        {
+          document.getElementById('error_re_password').innerHTML = "Re-password  not empty"
+          document.getElementById('error_re_password').style.color = 'red'
+          document.getElementById('error_re_password').style.marginLeft = '5%'
+        }
+        else{
+          if(this.state.password === this.state.re_password)
+          {
+            document.getElementById('error_re_password').innerHTML = ""
+          }
+          else{
+            document.getElementById('error_re_password').innerHTML = "Re-password  not true with password"
+            document.getElementById('error_re_password').style.color = 'red'
+            document.getElementById('error_re_password').style.marginLeft = '5%'
+          }
+        }
+        
+      }
      
     render(){
         if(!this.props.logged_in){
         if(!this.props.search){
         return (
-        
+                
                 <div className="sign--up">
                   <h1 className="text-center">Registration form</h1>
                   <hr/>
@@ -37,26 +94,30 @@ class SignUp extends Component{
                   <div className="col-lg-12">
                   <label className="font-weight-bold">Username:</label>
                   <input type="text" id="userNameSignUp" name="username" value={this.state.username} onChange={this.handle_change}
-                  className="form-control" placeholder="Enter your Username......"/>
-                                               
+                  onBlur = {this.handle_check_username} className="form-control" placeholder="Enter your Username......"/>
+                    <p id='error_username'></p>                  
                   </div>
                   </div> 
                                       
                   <label className="font-weight-bold">Email</label>
                   <input type="email" id="emailSignUp" name="email" value={this.state.email} onChange={this.handle_change}
-                  className="form-control" placeholder="Enter your Email....."/>
-                
+                  className="form-control" onBlur={this.handle_check_email} placeholder="Enter your Email....."/>
+                  <p id='error_email'></p>
                                      
                   <div className="row">
                   <div className="col-lg-6">
                   <label className="font-weight-bold">Password:</label>
                   <input type="password" id="passwordSignUp" name="password" value={this.state.password} onChange={this.handle_change}
-                  className="form-control" placeholder="Enter new Password......"/>
+                  className="form-control" onBlur={this.handle_check_pw} placeholder="Enter new Password......"/>
+                  <p id = 'error_password'></p>
                   </div>
                   <span id="security-password"></span>
                   <div class="col-lg-6">
                   <label className="font-weight-bold">Re-type Password:</label>
-                  <input type="password" id="rePasswordSignUp" name="s_R_password" className="form-control" placeholder="Enter Password again......"/>
+                  <input type="password" id="rePasswordSignUp" name="s_R_password" className="form-control"
+                  name="re_password" value={this.state.re_password} onChange={this.handle_change} 
+                    onBlur={this.handle_check_re_pw} placeholder="Enter Password again......"/>
+                  <p id='error_re_password'></p>
                   </div>
                   </div>
                   <br />
@@ -76,7 +137,7 @@ class SignUp extends Component{
                     )
                   }
                     else{
-                      return <Redirect to={'/search?key=' + this.props.search}/>
+                      return <Redirect to={'/search?key=' + this.props.search}/> 
                     }
         }
         else{
