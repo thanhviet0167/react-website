@@ -114,7 +114,7 @@ class SignUp extends Component{
                   <span id="security-password"></span>
                   <div class="col-lg-6">
                   <label className="font-weight-bold">Re-type Password:</label>
-                  <input type="password" id="rePasswordSignUp" name="s_R_password" className="form-control"
+                  <input type="password" id="rePasswordSignUp" className="form-control"
                   name="re_password" value={this.state.re_password} onChange={this.handle_change} 
                     onBlur={this.handle_check_re_pw} placeholder="Enter Password again......"/>
                   <p id='error_re_password'></p>

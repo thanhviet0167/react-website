@@ -31,6 +31,7 @@ class App extends Component {
       username: '',
       list_product: [],
       list_search: [],
+      list_product_sort_filter: [],
       search:'',
       orderBy: '',
       orderDir: '',
@@ -135,23 +136,31 @@ class App extends Component {
  
 
   handle_search = (e,data) => {
-    e.preventDefault();
-    this.setState({search:data.search})
-    axios({
-      method:'POST',
-      url: "http://localhost:8000/core/search/",
-      data:data,
-      headers: {
-        'Content-Type': 'application/json',
+    if(!data.search)
+    {
+      alert("Value of search is null")
     }
-  })
-  .then(reponse => {            
-      this.setState({list_search: reponse.data})
-      return <Redirect to='/search'/>
-  })
-  .catch(error => {
-      console.log(error)
-  })  
+    else
+    {
+      e.preventDefault();
+      this.setState({search:data.search})
+      axios({
+        method:'POST',
+        url: "http://localhost:8000/core/search/",
+        data:data,
+        headers: {
+          'Content-Type': 'application/json',
+      }
+      })
+      .then(reponse => {            
+          this.setState({list_search: reponse.data})
+          return <Redirect to='/search'/>
+      })
+      .catch(error => {
+          console.log(error)
+      }) 
+    }
+     
   }
 
   handle_login = (e, data) => {
@@ -240,24 +249,65 @@ class App extends Component {
   };
   handle_clear = () => {
     this.setState({search:''})
+    this.setState({type_product: ''})
     this.handle_clear_sort()
     console.log("Clear")
   };
   handle_clear_sort = () => {
     this.setState({orderDir:'',orderBy:''})
+
   };
   handle_sort = (orderBy, orderDir)=>{
     this.setState({orderBy:orderBy,
     orderDir:orderDir
     })
-    
+    var data = {
+      search:this.state.search,
+      type_sort: orderDir,
+      type_product: this.state.type_product
+    }
+    axios({
+      method:'POST',
+      url: "http://localhost:8000/core/products/sort/",
+      data:data,
+      headers: {
+        'Content-Type': 'application/json',
+    }
+    })
+    .then(reponse => {            
+      this.setState({list_product_sort_filter: reponse.data})
+    })
+    .catch(error => {
+      console.log(error)
+    }) 
   }
+
   handle_clear_type = () => {
     this.setState({type_product:''})
     this.handle_clear_sort()
   }
   handle_type = (value) => {
     this.setState({type_product:value})
+    var data = {
+      search:this.state.search,
+      type_sort: this.state.orderDir,
+      type_product: value
+    }
+    axios({
+      method:'POST',
+      url: "http://localhost:8000/core/products/sort/",
+      data:data,
+      headers: {
+        'Content-Type': 'application/json',
+    }
+    })
+    .then(reponse => {            
+      this.setState({list_product_sort_filter: reponse.data})
+    })
+    .catch(error => {
+      console.log(error)
+    }) 
+
   }
   handle_detail = (data) => {
     this.setState({product_detail:data})
@@ -375,7 +425,7 @@ class App extends Component {
             list_search = {this.state.list_search} search = {this.state.search} handle_sort = {this.handle_sort}
             orderDir={this.state.orderDir} orderBy={this.state.orderBy} handle_type={this.handle_type}
             type_product = {this.state.type_product} handle_detail={this.handle_detail} product_detail={this.product_details}
-            handle_clear = {this.handle_clear}/>}/>
+            handle_clear = {this.handle_clear} list_product_sort_filter = {this.state.list_product_sort_filter}/>}/>
             <Route path="/cart" exact component = {() => <LIST_CART product_cart = {this.product_cart} handle_add = {this.handle_add}
             handle_remove = {this.handle_remove} handle_clear_cart = {this.handle_clear_cart} search = {this.state.search} 
             handle_buy_cart = {this.handle_buy_cart} username={this.state.username}/>} />

@@ -3,26 +3,30 @@ import Cards from './Cards'
 import PropTypes from 'prop-types'
 import {Redirect} from 'react-router-dom'
 import {Dropdown} from 'react-bootstrap'
-import {orderBy as OrderBy, filter} from 'lodash'
+// import {orderBy as OrderBy, filter} from 'lodash'
 
 class SearchPage extends Component {
     constructor(props){
         super(props)
         this.state = {
             not_null:true,
-            list_product:OrderBy(this.props.list_search,[this.props.orderBy],[this.props.orderDir]),
+            // list_product:OrderBy(this.props.list_search,[this.props.orderBy],[this.props.orderDir]),
             type_product: this.props.type_product,
+            list_product_sort: this.props.list_product_sort_filter,
+            
         }
-        if(this.props.type_product.length > 0){
-            this.setState({list_product:filter(this.state.list_product,['type_product',this.props.type_product])})
-        }
-        this.list_type = filter(this.state.list_product,['type_product',this.props.type_product])
-        this.handle_sort = this.handle_sort.bind(this)
-        this.handle_type = this.handle_type.bind(this)
+        // if(this.props.type_product.length > 0){
+        //     this.setState({list_product:filter(this.state.list_product,['type_product',this.props.type_product])})
+        // }
+        // this.list_type = filter(this.state.list_product,['type_product',this.props.type_product])
+        // this.handle_sort = this.handle_sort.bind(this)
+        // this.handle_type = this.handle_type.bind(this)
     }
     
     componentDidMount(){
         console.log(this.props.list_search)
+        console.log("ProductSort-API")
+        console.log(this.state.list_product_sort.length)
     }
     handle_sort = (orderBy, orderDir) => {
         console.log(orderDir)
@@ -33,10 +37,10 @@ class SearchPage extends Component {
         this.props.handle_type(value)
     }
     render()
-    {
-        return (
+    {   if(this.props.orderDir === '' && this.props.type_product === '')
+        {
+            return (
                 <>
-                {this.state.type_product}
                 <div Style='display: flex; with:40%'>
                 <Dropdown>
                     <Dropdown.Toggle Style='margin-left : 30%;  cursor: pointer;' variant="primary" id="dropdown-basic">
@@ -58,16 +62,53 @@ class SearchPage extends Component {
                 </Dropdown>
                 </div>
                 
-                {this.list_type.length?<Cards list_product={this.list_type} handle_detail={this.props.handle_detail} 
+                {/* {this.state.list_product_sort.length?<Cards list_product={this.state.list_product_sort} handle_detail={this.props.handle_detail} 
                 handle_clear = {this.props.handle_clear}/>: 
-                <Cards list_product={this.state.list_product} handle_detail={this.props.handle_detail} handle_clear = {this.props.handle_clear}/>}
-                {this.props.list_search.length?'':<h3 Style='text-align:center; 
+                <Cards list_product={this.props.list_search} handle_detail={this.props.handle_detail} handle_clear = {this.props.handle_clear}/>} */}
+                {this.props.list_search.length?<Cards list_product={this.props.list_search} handle_detail={this.props.handle_detail} handle_clear = {this.props.handle_clear}/>:<h3 Style='text-align:center; 
                 margin-top:10%;'>No matching results were found</h3>}
                 {/* <h3 Style='text-align:center; 
                 margin-top:10%;'>No matching results were found</h3> */}
                 <Redirect to={'/search?key=' + this.props.search}/>
                 </>
                 )
+        }
+        else{
+            return (
+                <>
+                <div Style='display: flex; with:40%'>
+                <Dropdown>
+                    <Dropdown.Toggle Style='margin-left : 30%;  cursor: pointer;' variant="primary" id="dropdown-basic">
+                    Sort  
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item role = 'button' onClick={()=>this.handle_sort('price','asc')}>Low</Dropdown.Item>
+                      <Dropdown.Item role = 'button' onClick={()=>this.handle_sort('price','desc')}>Hight</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+                <Dropdown>
+                    <Dropdown.Toggle Style='margin-left: 50%' variant="success" id="dropdown-basic">
+                    Type
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item role = 'button' onClick={()=>this.handle_type('fruit')}>Fruit</Dropdown.Item>
+                      <Dropdown.Item role = 'button'onClick={()=>this.handle_type('vegetables')}>Vegetables</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+                </div>
+                
+                {this.state.list_product_sort.length?<Cards list_product={this.state.list_product_sort} handle_detail={this.props.handle_detail} 
+                handle_clear = {this.props.handle_clear}/>: 
+                <h3 Style='text-align:center;margin-top:10%;'>No matching results were found</h3>}
+                {/* {this.props.list_search.length?<Cards list_product={this.props.list_search} handle_detail={this.props.handle_detail} handle_clear = {this.props.handle_clear}/>:<h3 Style='text-align:center; 
+                margin-top:10%;'>No matching results were found</h3>} */}
+                {/* <h3 Style='text-align:center; 
+                margin-top:10%;'>No matching results were found</h3> */}
+                <Redirect to={'/search?key=' + this.props.search}/>
+                </>
+                )
+        }
+        
     }
 
     
@@ -86,4 +127,5 @@ SearchPage.propTypes = {
     handle_detail: PropTypes.func.isRequired,
     product_detail: PropTypes.array.isRequired,
     handle_clear: PropTypes.func.isRequired,
+    list_product_sort_filter: PropTypes.array.isRequired,
 }

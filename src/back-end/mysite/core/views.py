@@ -45,13 +45,50 @@ class AllProducts(APIView):
         mydata = GetAllProducts(list_products,many=True)
         return Response(data=mydata.data,status=status.HTTP_200_OK)
 
+def Partition(arr,l,r):
+    index = l; 
+    pivot = arr[l].price
+    for i in range(l+1,r):
+        if arr[i].price < pivot:
+            index += 1
+            arr[index], arr[i] = arr[i], arr[index]
+    arr[index], arr[l] = arr[l], arr[index]
+    return index
+
+def Quick_Sort(arr,l,r):
+	if l < r:
+		pivot = Partition(arr,l,r)
+		Quick_Sort(arr,l,pivot-1)
+		Quick_Sort(arr,pivot+1,r)
+
 class Product_Sort(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self,request):
-        type_sort = json.loads(request.body)
-        list_products = Products.objects.all().order_by(type_sort.get('price'))
-        mydata = GetAllProducts(list_products,many=True)
-        return Response(data=mydata.data,status=status.HTTP_200_OK)
+        req = json.loads(request.body)
+        if(req.get('type_product')):
+            list_products = list(Products.objects.all().filter(type_product=req.get('type_product')))
+        else:
+            list_products = list(Products.objects.all())
+        search_products = []
+        for i in list_products:
+            if(i.product_name.lower().find(req.get('search').lower()) != -1):
+                search_products.append(i)
+        if(req.get('type_sort')):
+            Quick_Sort(search_products,0,len(search_products))
+            if(req.get('type_sort') == "asc"):
+                mydata = GetAllProducts(search_products,many=True)
+                return Response(data=mydata.data,status=status.HTTP_200_OK)
+            elif(req.get('type_sort') == "desc"):
+                result = search_products[::-1]
+                mydata = GetAllProducts(result,many=True)
+                return Response(data=mydata.data,status=status.HTTP_200_OK)
+        else:
+            search_products = []
+            for i in list_products:
+                if(i.product_name.lower().find(req.get('search').lower()) != -1):
+                    search_products.append(i)
+            mydata = GetAllProducts(search_products,many=True)
+            return Response(data=mydata.data, status=status.HTTP_200_OK)
 
 class Product_Search(APIView):
     permission_classes = (permissions.AllowAny,)
