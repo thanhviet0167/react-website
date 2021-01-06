@@ -2,7 +2,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import React, {Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 //import { Button } from 'react-bootstrap'
-import {Button, Cart} from './Button'
+import {Button, Cart, Account} from './Button'
 import './Navbar.css'
 import PropTypes from 'prop-types'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
@@ -87,7 +87,8 @@ class Navbar extends Component{
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">Infor</Dropdown.Item>
-                      <Dropdown.Item><Link to='/cart'>My card</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to='/cart' style={{color: 'black', textDecoration: 'none'}}>My card</Link></Dropdown.Item>
+                      <Dropdown.Item ><Link to='/purchase' style={{color: 'black', textDecoration: 'none'}}>Purchase history</Link></Dropdown.Item>
                       <Dropdown.Item href='/sign-in' onClick={this.props.handle_logout}>Logout</Dropdown.Item>
                     </Dropdown.Menu>
             </Dropdown>
@@ -148,17 +149,18 @@ class Navbar extends Component{
                         
                     </ul>
                    
-                    {this.props.logged_in?this.state.button && <Button buttonStyle='btn--outline' 
+                    {this.props.logged_in?this.state.button && <Account buttonStyle='btn--outline' 
                     ><Dropdown>
                     <Dropdown.Toggle variant="info" id="dropdown-basic">
                     {this.props.username}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">Infor</Dropdown.Item>
-                      <Dropdown.Item ><Link to='/cart'>My card</Link></Dropdown.Item>
+                      <Dropdown.Item ><Link to='/cart' style={{color: 'black', textDecoration: 'none'}}>My card</Link></Dropdown.Item>
+                      <Dropdown.Item ><Link to='/purchase' style={{color: 'black', textDecoration: 'none'}}>Purchase history</Link></Dropdown.Item>
                       <Dropdown.Item href='/sign-in' onClick={this.props.handle_logout}>Logout</Dropdown.Item>
                     </Dropdown.Menu>
-                    </Dropdown></Button>:
+                    </Dropdown></Account>:
                     this.state.button && <Button buttonStyle='btn--outline' onClick={this.props.handle_clear}>SIGN-IN</Button>
                     }
                     {this.state.button && <Cart onClick={this.props.handle_clear} buttonStyle='btn--outline' to = "/cart">

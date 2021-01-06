@@ -9,6 +9,10 @@ import Carousel from './Carousel'
 // import ListCard from '../ListCard'
 
 class Home extends Component {
+
+    componentDidMount(){
+        console.log(this.props.my_list_cart)
+    }
     
     render(){
         if(!this.props.search){
@@ -34,6 +38,7 @@ Home.propTypes = {
     search: PropTypes.string.isRequired,
     handle_detail: PropTypes.func.isRequired,
     handle_clear: PropTypes.func.isRequired,
+    my_list_cart: PropTypes.array.isRequired,
 }
 
 export default Home;

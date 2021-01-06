@@ -40,3 +40,29 @@
     background-color: turquoise;
     color: whitesmoke;
 }
+
+
+@media only screen and (max-width: 960px)
+  {
+    
+    .button_search{
+        border-color: teal;
+        border-radius: 10%;
+        margin-right: 5px;
+        height: 80%;
+        width: 15%;
+    }
+  }
+  
+
+@media only screen and (max-width: 612px)
+  {
+    .button_search{
+        border-color: teal;
+        border-radius: 10%;
+        margin-right: 5px;
+        height: 80%;
+        width: 15%;
+    }
+    
+  }

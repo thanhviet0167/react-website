@@ -11,6 +11,8 @@ import CardDetail from './components/pages/CardDetail'
 import Search from './components/Search'
 import SearchPage from './components/SearchPage'
 import LIST_CART from './components/pages/List_Cart'
+import Purchase from './components/pages/Purchase'
+import {filter} from 'lodash'
 
 // import Card_Product from '././components/data/data_products'
 // import {orderBy as OrderBy} from 'lodash'
@@ -44,7 +46,9 @@ class App extends Component {
         password: '',
         email: '',
         re_password: ''
-      }
+      },
+      url_search: '',
+      my_list_cart: []
     };
       this.product_details = []
     // this.product_cart = {
@@ -97,7 +101,8 @@ class App extends Component {
   })
   .catch(error => {
       console.log(error)
-  })  
+  }) 
+  
   }
 
   async componentDidMount() {
@@ -131,11 +136,45 @@ class App extends Component {
         })
         .catch(error => {
             console.log(error)
-        })  
+        })
+
+        
+    axios({
+          method:'GET',
+          url: "http://localhost:8000/core/add_card/",
+          headers: {
+            'Content-Type': 'application/json',
+        }
+        })
+        .then(reponse => {            
+          console.log(reponse.data)
+          var data_ = filter(reponse.data,['username',this.state.username])
+          var list = []
+          console.log(data_)
+          if(data_.length > 0)
+          {
+            for(var i = 0; i < data_[0].list_cart.length; i++){
+              console.log(data_[0].list_cart[i])
+              if(data_[0].list_cart[i])
+              {
+                for(var j = 0; j < data_[0].list_cart[i].length; j++)
+                {
+                  list.push(data_[0].list_cart[i][j])
+                }
+              }
+            }
+            this.setState({my_list_cart: list})
+          }
+          
+        })
+        .catch(error => {
+            console.log(error)
+        }) 
   }
  
 
   handle_search = (e,data) => {
+    this.setState({url_search: ''})
     if(!data.search)
     {
       alert("Value of search is null")
@@ -187,6 +226,38 @@ class App extends Component {
           alert("User or password not correct")
         }
       });
+      // Get data cart
+      axios({
+        method:'GET',
+        url: "http://localhost:8000/core/add_card/",
+        headers: {
+          'Content-Type': 'application/json',
+      }
+      })
+      .then(reponse => {            
+        console.log(reponse.data)
+        var data_ = filter(reponse.data,['username',data.username])
+        var list = []
+        console.log(data_)
+        if(data_.length > 0)
+        {
+          for(var i = 0; i < data_[0].list_cart.length; i++){
+            console.log(data_[0].list_cart[i])
+            if(data_[0].list_cart[i])
+            {
+              for(var j = 0; j < data_[0].list_cart[i].length; j++)
+              {
+                list.push(data_[0].list_cart[i][j])
+              }
+            }
+          }
+          this.setState({my_list_cart: list})
+        }
+        
+      })
+      .catch(error => {
+          console.log(error)
+      }) 
   };
   handle_buy_cart = (data) => {
     fetch('http://localhost:8000/core/add_card/', {
@@ -203,6 +274,39 @@ class App extends Component {
 
       });
       this.handle_clear_cart()
+      // Get data cart
+      axios({
+        method:'GET',
+        url: "http://localhost:8000/core/add_card/",
+        headers: {
+          'Content-Type': 'application/json',
+      }
+      })
+      .then(reponse => {            
+        console.log(reponse.data)
+        var data_ = filter(reponse.data,['username',data.username])
+        var list = []
+        console.log(data_)
+        if(data_.length > 0)
+        {
+          for(var i = 0; i < data_[0].list_cart.length; i++){
+            console.log(data_[0].list_cart[i])
+            if(data_[0].list_cart[i])
+            {
+              for(var j = 0; j < data_[0].list_cart[i].length; j++)
+              {
+                list.push(data_[0].list_cart[i][j])
+              }
+            }
+          }
+          this.setState({my_list_cart: list})
+        }
+        
+      })
+      .catch(error => {
+          console.log(error)
+      }) 
+
   };
   handle_signup = (e, data) => {
     e.preventDefault();
@@ -242,6 +346,40 @@ class App extends Component {
         }
         
       });
+
+    // Get data cart
+    axios({
+      method:'GET',
+      url: "http://localhost:8000/core/add_card/",
+      headers: {
+        'Content-Type': 'application/json',
+    }
+    })
+    .then(reponse => {            
+      console.log(reponse.data)
+      var data_ = filter(reponse.data,['username',data.username])
+      var list = []
+      console.log(data_)
+      if(data_.length > 0)
+      {
+        for(var i = 0; i < data_[0].list_cart.length; i++){
+          console.log(data_[0].list_cart[i])
+          if(data_[0].list_cart[i])
+          {
+            for(var j = 0; j < data_[0].list_cart[i].length; j++)
+            {
+              list.push(data_[0].list_cart[i][j])
+            }
+          }
+        }
+        this.setState({my_list_cart: list})
+      }
+      
+    })
+    .catch(error => {
+        console.log(error)
+    }) 
+    
   };
   handle_logout = () => {
     localStorage.removeItem('token');
@@ -266,6 +404,16 @@ class App extends Component {
       type_sort: orderDir,
       type_product: this.state.type_product
     }
+    var str = ''
+    if(data.type_sort)
+    {
+      str += "sort=" + data.type_sort + "&"
+    }
+    if(data.type_product)
+    {
+      str += "type=" + data.type_product
+    }
+    this.setState({url_search: str})
     axios({
       method:'POST',
       url: "http://localhost:8000/core/products/sort/",
@@ -293,6 +441,16 @@ class App extends Component {
       type_sort: this.state.orderDir,
       type_product: value
     }
+    var str = ''
+    if(data.type_sort)
+    {
+      str += "sort=" + data.type_sort+"&"
+    }
+    if(data.type_product)
+    {
+      str += "type=" + data.type_product
+    }
+    this.setState({url_search: str})
     axios({
       method:'POST',
       url: "http://localhost:8000/core/products/sort/",
@@ -412,7 +570,7 @@ class App extends Component {
         <Search handle_search = {this.handle_search} handle_clear_type={this.handle_clear_type}/>     
           <Switch>
             <Route path="/" exact component={() => <Home list_product={this.state.list_product} search = {this.state.search}
-            handle_detail={this.handle_detail} handle_clear = {this.handle_clear}/>}/>
+            handle_detail={this.handle_detail} handle_clear = {this.handle_clear} my_list_cart = {this.state.my_list_cart}/>}/>
             <Route path="/services" exact component={Services}/>
             <Route path="/products" exact component={Products}/>
             <Route path="/product-detail" exact component={()=><CardDetail product_detail={this.product_details}
@@ -425,10 +583,13 @@ class App extends Component {
             list_search = {this.state.list_search} search = {this.state.search} handle_sort = {this.handle_sort}
             orderDir={this.state.orderDir} orderBy={this.state.orderBy} handle_type={this.handle_type}
             type_product = {this.state.type_product} handle_detail={this.handle_detail} product_detail={this.product_details}
-            handle_clear = {this.handle_clear} list_product_sort_filter = {this.state.list_product_sort_filter}/>}/>
+            handle_clear = {this.handle_clear} list_product_sort_filter = {this.state.list_product_sort_filter}
+            url_search = {this.state.url_search}/>}/>
             <Route path="/cart" exact component = {() => <LIST_CART product_cart = {this.product_cart} handle_add = {this.handle_add}
             handle_remove = {this.handle_remove} handle_clear_cart = {this.handle_clear_cart} search = {this.state.search} 
             handle_buy_cart = {this.handle_buy_cart} username={this.state.username}/>} />
+            <Route path="/purchase" exact component = {() => <Purchase search = {this.state.search} 
+            my_list_cart = {this.state.my_list_cart} username={this.state.username}/>} />
           </Switch>
       </Router>
     </>

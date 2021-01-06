@@ -135,7 +135,7 @@ class Add_card(APIView):
     def get(self, request):
         list_products = Card.objects.all()
         mydata = GetAllCard(list_products,many=True)
-        return Response(data=mydata.data,status=status.HTTP_200_OK)
+        return Response(data=mydata.data,status=status.HTTP_200_OK) 
 
 
 

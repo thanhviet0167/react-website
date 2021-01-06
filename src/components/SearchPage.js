@@ -26,7 +26,7 @@ class SearchPage extends Component {
     componentDidMount(){
         console.log(this.props.list_search)
         console.log("ProductSort-API")
-        console.log(this.state.list_product_sort.length)
+        console.log(this.props.url_search)
     }
     handle_sort = (orderBy, orderDir) => {
         console.log(orderDir)
@@ -69,7 +69,9 @@ class SearchPage extends Component {
                 margin-top:10%;'>No matching results were found</h3>}
                 {/* <h3 Style='text-align:center; 
                 margin-top:10%;'>No matching results were found</h3> */}
-                <Redirect to={'/search?key=' + this.props.search}/>
+                {this.props.url_search?<Redirect to={'/search?key=' + this.props.search + '&' + this.props.url_search}/>
+                :<Redirect to={'/search?key=' + this.props.search}/>}
+                
                 </>
                 )
         }
@@ -104,7 +106,8 @@ class SearchPage extends Component {
                 margin-top:10%;'>No matching results were found</h3>} */}
                 {/* <h3 Style='text-align:center; 
                 margin-top:10%;'>No matching results were found</h3> */}
-                <Redirect to={'/search?key=' + this.props.search}/>
+                {this.props.url_search?<Redirect to={'/search?key=' + this.props.search + '&' + this.props.url_search}/>
+                :<Redirect to={'/search?key=' + this.props.search}/>}
                 </>
                 )
         }
@@ -128,4 +131,5 @@ SearchPage.propTypes = {
     product_detail: PropTypes.array.isRequired,
     handle_clear: PropTypes.func.isRequired,
     list_product_sort_filter: PropTypes.array.isRequired,
+    url_search: PropTypes.string.isRequired,
 }
