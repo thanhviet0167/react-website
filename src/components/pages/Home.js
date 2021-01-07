@@ -6,6 +6,7 @@ import Footer from '../Fotter'
 import PropTypes from 'prop-types'
 import {Redirect} from 'react-router-dom'
 import Carousel from './Carousel'
+import Content from './Content'
 // import ListCard from '../ListCard'
 
 class Home extends Component {
@@ -22,6 +23,7 @@ class Home extends Component {
                     <Cards list_product = {this.props.list_product} handle_detail = {this.props.handle_detail}
                     handle_clear = {this.props.handle_clear}/>
                     <Carousel />
+                    <Content />
                     <Footer />
                 </>
             )
